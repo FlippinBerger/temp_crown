@@ -4,7 +4,7 @@ class_name Clock
 var timer: Timer
 const timer_length := 0.1
 
-var clock_time := 59.0
+var clock_time := 0.0
 
 func _ready() -> void:
     timer = Timer.new()
