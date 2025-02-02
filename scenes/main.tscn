@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://c76du55ctjc3m"]
+
+[ext_resource type="PackedScene" uid="uid://bi3rnksxu7aks" path="res://scenes/ui/hud.tscn" id="1_jo8wq"]
+[ext_resource type="Script" path="res://scripts/clock/clock.gd" id="3_45qv4"]
+[ext_resource type="Script" path="res://scripts/player/player.gd" id="3_ikmj1"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_4np1e"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3x54u"]
+radius = 14.0
+height = 58.0
+
+[node name="Main" type="Node"]
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Environment" type="Node" parent="."]
+
+[node name="OpsRoom" type="Node" parent="Environment"]
+
+[node name="WaitingRoom" type="Node" parent="Environment"]
+
+[node name="SanitationRoom" type="Node" parent="Environment"]
+
+[node name="CleaningCloset" type="Node" parent="Environment"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="CanvasLayer" instance=ExtResource("1_jo8wq")]
+
+[node name="Clock" type="Node" parent="."]
+script = ExtResource("3_45qv4")
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(586, 368)
+script = ExtResource("3_ikmj1")
+metadata/_edit_group_ = true
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Player"]
+scale = Vector2(26.5, 28.5)
+mesh = SubResource("CapsuleMesh_4np1e")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("CapsuleShape2D_3x54u")
