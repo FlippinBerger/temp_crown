@@ -33,4 +33,3 @@ func get_time_for_display() -> String:
     
     return "%.2f" % clock_time
 
-

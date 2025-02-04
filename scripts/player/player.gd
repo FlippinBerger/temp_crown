@@ -1,10 +1,19 @@
 extends CharacterBody2D
 class_name Player
 
+signal equipped(t: Tool.ToolType)
+
 const SPEED := 325.0
+
+var equipped_tools: Array[Tool.ToolType]
 
 func _ready() -> void:
     pass
+
+
+func _process(delta: float) -> void:
+    pass
+
 
 func _physics_process(delta: float) -> void:
     var move_dir := Vector2.ZERO
@@ -25,5 +34,11 @@ func _physics_process(delta: float) -> void:
 
     move_and_slide()
 
+
 func dash():
     pass
+
+
+func equip(t: Tool.ToolType):
+    equipped_tools = [t]
+    equipped.emit(t)

@@ -1,8 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://c76du55ctjc3m"]
+[gd_scene load_steps=15 format=3 uid="uid://c76du55ctjc3m"]
 
 [ext_resource type="PackedScene" uid="uid://bi3rnksxu7aks" path="res://scenes/ui/hud.tscn" id="1_jo8wq"]
+[ext_resource type="Texture2D" uid="uid://cd57llm8f8p02" path="res://assets/mirror.png" id="2_7u7yg"]
 [ext_resource type="Script" path="res://scripts/clock/clock.gd" id="3_45qv4"]
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="3_ikmj1"]
+[ext_resource type="Texture2D" uid="uid://diw08a4tf674c" path="res://assets/mop.png" id="4_8t3i4"]
+[ext_resource type="Script" path="res://scripts/tools/tool.gd" id="4_47ep6"]
+[ext_resource type="Texture2D" uid="uid://v08ekpjjo7qm" path="res://assets/drill.png" id="6_ciiqc"]
+[ext_resource type="Texture2D" uid="uid://c5bcluuc1bmkp" path="res://assets/syringe.png" id="8_v7ug7"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_824ii"]
+height = 44.0
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_4np1e"]
 
@@ -10,9 +18,33 @@
 radius = 14.0
 height = 58.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_edasv"]
+radius = 12.2334
+height = 86.3557
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ddw1"]
+size = Vector2(24, 39)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1ylbl"]
+size = Vector2(20, 38)
+
 [node name="Main" type="Node"]
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="Mirror" type="Node2D" parent="."]
+position = Vector2(266, 153)
+script = ExtResource("4_47ep6")
+tool_type = 2
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Mirror"]
+position = Vector2(9.53674e-07, -0.999999)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("2_7u7yg")
+
+[node name="Area2D" type="Area2D" parent="Mirror"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mirror/Area2D"]
+shape = SubResource("CapsuleShape2D_824ii")
 
 [node name="Environment" type="Node" parent="."]
 
@@ -42,3 +74,52 @@ mesh = SubResource("CapsuleMesh_4np1e")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 shape = SubResource("CapsuleShape2D_3x54u")
+
+[node name="Mop" type="Node2D" parent="."]
+position = Vector2(356, 336)
+script = ExtResource("4_47ep6")
+tool_type = 1
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Mop"]
+position = Vector2(28, 28)
+scale = Vector2(4.5, 4.5)
+texture = ExtResource("4_8t3i4")
+
+[node name="Area2D" type="Area2D" parent="Mop"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mop/Area2D"]
+position = Vector2(29, 29)
+rotation = -0.71733
+shape = SubResource("CapsuleShape2D_edasv")
+
+[node name="Drill" type="Node2D" parent="."]
+position = Vector2(716, 167)
+script = ExtResource("4_47ep6")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Drill"]
+scale = Vector2(2.875, 2.875)
+texture = ExtResource("6_ciiqc")
+
+[node name="Area2D" type="Area2D" parent="Drill"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Drill/Area2D"]
+position = Vector2(2, 0.5)
+shape = SubResource("RectangleShape2D_4ddw1")
+
+[node name="Syringe" type="Node2D" parent="."]
+position = Vector2(114, 305)
+script = ExtResource("4_47ep6")
+tool_type = 3
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Syringe"]
+scale = Vector2(2.4375, 2.4375)
+texture = ExtResource("8_v7ug7")
+
+[node name="Area2D" type="Area2D" parent="Syringe"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Syringe/Area2D"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_1ylbl")
