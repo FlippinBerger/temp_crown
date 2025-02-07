@@ -20,20 +20,20 @@ label_settings = ExtResource("2_pn68t")
 
 [node name="ClockLabel" type="Label" parent="."]
 layout_mode = 0
-offset_left = 968.0
+offset_left = 1688.0
 offset_top = 48.0
-offset_right = 1159.0
+offset_right = 1879.0
 offset_bottom = 115.0
 text = "00:00.0"
 label_settings = ExtResource("2_pn68t")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 0
-offset_left = 1016.0
-offset_top = 528.0
-offset_right = 1088.0
-offset_bottom = 624.0
+offset_left = 1688.0
+offset_top = 800.0
+offset_right = 1856.0
+offset_bottom = 1024.0
 
 [node name="ToolSprite" type="Sprite2D" parent="CenterContainer"]
-position = Vector2(36, 44)
-scale = Vector2(5.5, 6.5)
+position = Vector2(88, 112)
+scale = Vector2(10, 14)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c76du55ctjc3m"]
+[gd_scene load_steps=24 format=3 uid="uid://c76du55ctjc3m"]
 
 [ext_resource type="PackedScene" uid="uid://bi3rnksxu7aks" path="res://scenes/ui/hud.tscn" id="1_jo8wq"]
 [ext_resource type="Texture2D" uid="uid://cd57llm8f8p02" path="res://assets/mirror.png" id="2_7u7yg"]
@@ -7,16 +7,20 @@
 [ext_resource type="Texture2D" uid="uid://diw08a4tf674c" path="res://assets/mop.png" id="4_8t3i4"]
 [ext_resource type="Script" path="res://scripts/tools/tool.gd" id="4_47ep6"]
 [ext_resource type="Texture2D" uid="uid://v08ekpjjo7qm" path="res://assets/drill.png" id="6_ciiqc"]
+[ext_resource type="Texture2D" uid="uid://d040y877hci0w" path="res://assets/assistant.png" id="6_qbyqg"]
 [ext_resource type="Texture2D" uid="uid://c5bcluuc1bmkp" path="res://assets/syringe.png" id="8_v7ug7"]
+[ext_resource type="Script" path="res://scripts/work/mess.gd" id="9_7nsyr"]
+[ext_resource type="Texture2D" uid="uid://bn3x16nqivdr1" path="res://assets/mess.png" id="10_ro7u2"]
+[ext_resource type="Script" path="res://scripts/people/dentist.gd" id="11_vih67"]
+[ext_resource type="Script" path="res://scripts/spawners/patient.gd" id="12_doe1o"]
+[ext_resource type="Texture2D" uid="uid://dfambyth75axi" path="res://assets/dentist.png" id="12_mk5d4"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_824ii"]
 height = 44.0
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_4np1e"]
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3x54u"]
-radius = 14.0
-height = 58.0
+radius = 33.0
+height = 112.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_edasv"]
 radius = 12.2334
@@ -27,6 +31,18 @@ size = Vector2(24, 39)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1ylbl"]
 size = Vector2(20, 38)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sfn61"]
+radius = 27.074
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ouilm"]
+radius = 36.0
+height = 114.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_bit2l"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x3sw0"]
+size = Vector2(20, 41.5)
 
 [node name="Main" type="Node"]
 
@@ -64,16 +80,18 @@ shape = SubResource("CapsuleShape2D_824ii")
 script = ExtResource("3_45qv4")
 
 [node name="Player" type="CharacterBody2D" parent="."]
+z_index = 1
 position = Vector2(586, 368)
 script = ExtResource("3_ikmj1")
-metadata/_edit_group_ = true
-
-[node name="MeshInstance2D" type="MeshInstance2D" parent="Player"]
-scale = Vector2(26.5, 28.5)
-mesh = SubResource("CapsuleMesh_4np1e")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(-4, 1)
 shape = SubResource("CapsuleShape2D_3x54u")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+position = Vector2(-5.72205e-06, -5.72205e-06)
+scale = Vector2(6.6875, 6.6875)
+texture = ExtResource("6_qbyqg")
 
 [node name="Mop" type="Node2D" parent="."]
 position = Vector2(356, 336)
@@ -123,3 +141,54 @@ texture = ExtResource("8_v7ug7")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Syringe/Area2D"]
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_1ylbl")
+
+[node name="Mess" type="Node2D" parent="."]
+position = Vector2(543, 81)
+script = ExtResource("9_7nsyr")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Mess"]
+position = Vector2(0, 1)
+scale = Vector2(3.625, 3.625)
+texture = ExtResource("10_ro7u2")
+
+[node name="Area2D" type="Area2D" parent="Mess"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mess/Area2D"]
+shape = SubResource("CircleShape2D_sfn61")
+
+[node name="Dentist" type="CharacterBody2D" parent="."]
+position = Vector2(1038, 276)
+collision_layer = 8
+collision_mask = 8
+script = ExtResource("11_vih67")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dentist"]
+position = Vector2(-1, 3)
+shape = SubResource("CapsuleShape2D_ouilm")
+
+[node name="Sprite2D" type="Sprite2D" parent="Dentist"]
+position = Vector2(-1.00001, 1.99999)
+scale = Vector2(6.95312, 6.95312)
+texture = ExtResource("12_mk5d4")
+
+[node name="DentalChair" type="Node2D" parent="."]
+modulate = Color(0.437582, 0.227331, 0.0812521, 1)
+position = Vector2(922, 310)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="DentalChair"]
+position = Vector2(1.90735e-06, 1)
+scale = Vector2(33.5, 65.5)
+mesh = SubResource("QuadMesh_bit2l")
+
+[node name="Area2D" type="Area2D" parent="DentalChair"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DentalChair/Area2D"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_x3sw0")
+
+[node name="PatientSpawner" type="Node" parent="."]
+script = ExtResource("12_doe1o")
+
+[node name="SpawnPoint" type="Marker2D" parent="PatientSpawner"]
+position = Vector2(113, 591)

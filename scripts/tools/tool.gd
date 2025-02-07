@@ -9,13 +9,7 @@ enum ToolType {
 }
 
 static func get_tool_type_name(tt: ToolType) -> String: 
-    match tt:
-        ToolType.DRILL: return "Drill"
-        ToolType.MOP: return "Mop"
-        ToolType.MIRROR: return "Mirror"
-        ToolType.SYRINGE: return "Syringe"
-        _: return "Not a tool type"
-
+    return ToolType.keys()[tt]
 
 @export var tool_type: ToolType
 

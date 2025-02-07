@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://sd7al3uo2o1i"]
+
+[ext_resource type="Texture2D" uid="uid://byvma4tmk2d4i" path="res://assets/patient.png" id="1_hdve2"]
+[ext_resource type="Script" path="res://scripts/people/patient.gd" id="1_m47rq"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b20u7"]
+radius = 36.0
+height = 166.0
+
+[node name="Patient" type="Node2D"]
+script = ExtResource("1_m47rq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1.52588e-05, 1.52588e-05)
+scale = Vector2(10.25, 10.25)
+texture = ExtResource("1_hdve2")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-1, 12)
+shape = SubResource("CapsuleShape2D_b20u7")

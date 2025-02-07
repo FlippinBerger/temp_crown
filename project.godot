@@ -24,6 +24,11 @@ Events="*res://scripts/globals/events.gd"
 gdscript/warnings/unused_parameter=0
 gdscript/warnings/unused_signal=0
 
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+
 [input]
 
 move_up={
